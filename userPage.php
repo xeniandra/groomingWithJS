@@ -1,13 +1,13 @@
 <?php
     session_start();
-    include ("backend\connection.php");
-    include ("backend\check_session.php");
+    require ("include\connection.php");
+    require ("php\check_session.php");
     $queryCategories = mysqli_query($link, "SELECT `id_category`, `category` FROM `category`");
     $idUser = $_SESSION['id_user'];
     $queryApplicationsUser = mysqli_query($link, "SELECT `id_application`, `id_user`, `name_dog`, `description`, `id_category`, `status`, `time` FROM `applications` WHERE `id_user` = $idUser ORDER BY `time` DESC");
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,17 +16,13 @@
     <title>Личный кабинет</title>
 </head>
 <body>
-    <header>
-        <div class="container-header flex">
-            <img src="logo\logo_groom.png" alt="logo" class="logo">
-            <p class="name">ГрумRoom</p>
-        </div>
+<?php include "include/header.php"?>
+    <main class="main">
         <div class="menu flex">
             <a href="index.php" class="menu">Главная</a>
-            <a href="backend\logout.php" class="menu">Выход</a>
+            <a href="php\logout.php" class="menu">Выход</a>
         </div>
-    </header>
-    <main>
+
         <div class="container-main flex">
             <div class="heading flex" id="app">
                 <h3 class="title">Мои заявки</h2>
@@ -60,7 +56,7 @@ while($app = mysqli_fetch_assoc($queryApplicationsUser)){
 <?php
     if($status == 'Новая'){
 ?>
-                    <a href="backend\del_application.php?idApp=<?=$id_application?>" class="deleteApp">Удалить заявку</a>
+                    <a href="php\del_application.php?idApp=<?=$id_application?>" class="deleteApp">Удалить заявку</a>
 <?php } ?>
                 </div>
 <?
@@ -73,7 +69,7 @@ while($app = mysqli_fetch_assoc($queryApplicationsUser)){
                     <h3 class="title" id="auth">Создать заявку</h2>
             </div>
             <div class="container-form flex">
-                <form enctype="multipart/form-data" action="backend\add_application.php" method="POST" class="flex" id="add"> 
+                <form enctype="multipart/form-data" action="php\add_application.php" method="POST" class="flex" id="add"> 
                     <p class="message"><?=$_GET['message'];?></p>
                     <input type="text" name="name" placeholder="Кличка питомца" required>
                     <textarea name="description" placeholder="Описание работы" required rows="5"></textarea>
@@ -91,11 +87,6 @@ while($app = mysqli_fetch_assoc($queryApplicationsUser)){
                 </form>
             </div>
     </main>
-    <footer>
-        <p class="footer">Задание выполнено в рамках подготовки к Демонстрационному экзамену</p>
-        <p class="year">2021г.</p>
-
-    </footer>
     <script src="js\user.js"></script>
 </body>
 </html>

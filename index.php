@@ -1,46 +1,40 @@
 <?php
     session_start();
-    include ("backend\connection.php");
+    require ("include\connection.php");
     $queryApplications = mysqli_query($link, "SELECT `id_application`, `id_user`, `name_dog`, `id_category`, `photo_before`, `photo_after`, `status`, `time` FROM `applications` WHERE `status` = 'Услуга оказана' ORDER BY `time` DESC LIMIT 4");
     $queryApplicationsNumber = mysqli_query($link, "SELECT * FROM `applications` WHERE `status` = 'Услуга оказана'");
     $applicationsNumber = mysqli_num_rows($queryApplicationsNumber);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css\style.css">
+    <link rel="shortcut icon" href="logo\logo_groom.png" type="image/x-icon">		
     <title>Главная страница</title>
 </head>
 <body>
-    <header>
-        <div class="container-header flex">
-            <img src="logo\logo_groom.png" alt="logo" class="logo">
-            <p class="name">ГрумRoom</p>
-        </div>
-        <div class="menu flex">
-            <a href="#register" class="menu">Регистрация</a>
-            <?php if($_SESSION['login'] == true){ 
-                if($_SESSION['role'] == 2){?>
-            <a href="user.php" class="menu">Личный кабинет</a>
-            <?php }
-            else{?>
-                <a href="groom\index.php" class="menu">Личный кабинет</a>
-            <?}
-            } 
-            else{?>
-            <a href="#auth" class="menu">Вход в личный кабинет</a>
-            <? } ?>
-        </div>
-    </header>
-    <main>
+<?php include "include/header.php";?>
+
+    <main class="main">
+		<div class="contRegWrap">
+			<div class="counter">
+				<h3>Добрых дел сделано:</h3>
+				<p class="counter">777</p>
+			</div>
+
+			<div class="regAuth">
+			<a href="authorizationPage.php">Авторизация</a>
+			<a href="registrationPage.php">Регистрация</a>
+			</div>
+		</div>
+<!-- zayavki -->
         <div class="container-main flex">
             <div class="heading flex">
                 <h3 class="title">Последние решенные заявки</h2>
             </div>
-                <h2 class="counter">Количестве оказанных услуг: <?=$applicationsNumber?></h3>
 
             <div class="container-request flex">
 <?php
@@ -80,7 +74,7 @@ while ($app = mysqli_fetch_assoc($queryApplications)) {
                 <h3 class="title" id="register">Регистрация</h2>
             </div>
 
-                <form action="backend\registration.php" method="POST" class="flex" onsubmit="return fn_register();" id="reg"> 
+                <form action="php\registration.php" method="POST" class="flex" onsubmit="return fn_register();" id="reg"> 
 <?php 
 if($_GET['messageLog'] || $_GET['messagePass']){
 ?>
@@ -105,7 +99,7 @@ if($_GET['messageLog'] || $_GET['messagePass']){
                 <div class="heading flex">
                     <h3 class="title" id="auth">Авторизация</h2>
                 </div>
-                <form action="backend\authorization.php" method="POST" class="flex">
+                <form action="php\authorization.php" method="POST" class="flex">
 <?php 
     if($_GET['messageLog']){
 ?>
@@ -119,11 +113,7 @@ if($_GET['messageLog'] || $_GET['messagePass']){
                 </form>
         </div>
     </main>
-
-    <footer>
-        <p class="footer">Задание выполнено в рамках подготовки к Демонстрационному экзамену</p>
-        <p class="year">2021г.</p>
-    </footer>
+<?php include "include/footer.php";?>
     
     <script src="js\index.js"></script>
     <!-- <script>

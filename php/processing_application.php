@@ -2,11 +2,11 @@
     // старт сессии
     session_start();
     // соединение с базой данных
-    include ("connection.php");
+    require ("../include/connection.php");
     // проверка сессии
-    include ("check_session.php");
+    require ("check_session.php");
     // проверка на роль администратора
-    include ("check_admin.php");
+    require ("check_admin.php");
     
     $idApp = $_POST['idApp'];
     $comment = $_POST['comment'];

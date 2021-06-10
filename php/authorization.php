@@ -1,5 +1,5 @@
 <?php
-    include ("connection.php");
+    require ("../include/connection.php");
     $login = $_POST['login'];
     $password = $_POST['password'];
     $queryUser = mysqli_query($link, "SELECT `id_user`, `fio`, `login`, `email`, `password`, `role` FROM `users` WHERE `login` = '$login' 
@@ -19,7 +19,7 @@
             exit();
         }
         else{
-            header('Location: ../user.php');
+            header('Location: ../userPage.php');
             exit();
         }
     }

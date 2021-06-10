@@ -2,11 +2,11 @@
     // старт сессии
     session_start();
     // соединение с базой данных
-    include ("..\backend\connection.php");
+    require ("..\include\connection.php");
     // проверка сессии
-    include ("..\backend\check_session.php");
+    require ("..\php\check_session.php");
     // проверка на роль администратора
-    include ("..\backend\check_admin.php");
+    require ("..\php\check_admin.php");
 
     $queryCategories = mysqli_query($link, "SELECT `id_category`, `category` FROM `category`");
     $queryApplicationsUser = mysqli_query($link, "SELECT `id_application`, `id_user`, `name_dog`, `description`, `id_category`, `status`, `time` FROM `applications` WHERE `status` = 'Новая' ORDER BY `time` DESC");
@@ -30,7 +30,7 @@
         </div>
         <div class="menu flex">
             <a href="..\index.php" class="menu">Главная</a>
-            <a href="..\backend\logout.php" class="menu">Выход</a>
+            <a href="..\php\logout.php" class="menu">Выход</a>
         </div>
     </header>
     <main>
@@ -45,7 +45,7 @@
 ?>
             <div class="request">
                 <p class="category"><?=$category?></p>
-                <a href="..\backend\del_category.php?idCategory=<?=$idCategory?>" class="del">Удалить категорию</a>
+                <a href="..\php\del_category.php?idCategory=<?=$idCategory?>" class="del">Удалить категорию</a>
             </div>
 <?php
     }
@@ -55,7 +55,7 @@
             <div class="heading flex">
                 <h3 class="title">Добавить категорию</h2>
             </div>
-            <form action="..\backend\add_category.php" method="POST" class="flex">
+            <form action="..\php\add_category.php" method="POST" class="flex">
                 <input type="text" name="nameCategory" placeholder="Название категории" required>
                 <input type="submit" value="Добавить">
             </form>
@@ -87,7 +87,7 @@ while($app = mysqli_fetch_assoc($queryApplicationsUser)){
                     <div class="prepare" id="prepare_<?=$id_application?>">
                     <p class="change"><a class="deleteApp">Чтобы сменить статус на <b>Обработка данных</b></a></p>
 
-                        <form action="..\backend\processing_application.php" method="POST" class="flex">
+                        <form action="..\php\processing_application.php" method="POST" class="flex">
                             <p>Оставьте комментарий:</p>
                             <input type="text" name="comment" placeholder="Комментарий" required>
                             <input type="hidden" name="idApp" value="<?=$id_application?>">
@@ -97,7 +97,7 @@ while($app = mysqli_fetch_assoc($queryApplicationsUser)){
                     <div class="done" id="done_<?=$id_application?>">
                     <p class="change"><a class="deleteApp">Чтобы сменить статус на <b>Услуга оказана</b></a></p>
 
-                        <form action="..\backend\done_application.php" enctype="multipart/form-data" method="POST" class="flex">
+                        <form action="..\php\done_application.php" enctype="multipart/form-data" method="POST" class="flex">
                             <p>Загрузите фото питомца:</p>
                             <input type="hidden" name="idApp" value="<?=$id_application?>">
                             <input type="file" name="image" required>
