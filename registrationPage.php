@@ -17,29 +17,27 @@
 <?php include "include/header.php";?>
     <main class="main">
         <h2>Регистрация</h2>
-        <form action="php/registration.php" method="POST" class="flex" onsubmit="return fn_register();" id="reg"> 
-<?php 
-if($_GET['messageLog'] || $_GET['messagePass']){
-?>
-                <p class="message"><?=$_GET['messageLog'];?></p>
-                <p class="message"><?=$_GET['messagePass'];?></p>
-<?php 
-}
-?>
-                    <input type="text" name="fio" pattern="[а-яА-ЯёЁ\-\ ]+$" placeholder="Введите ФИО" required>
-                    <input type="text" name="login" pattern="[a-zA-Z\-\ ]+$" placeholder="Введите логин" required>
-                    <input type="email" name="email" placeholder="Введите Email" required>
-                    <input type="password" name="password" placeholder="Введите пароль" id="password" required>
-                    <input type="password" name="passwordCheck" placeholder="Повторите пароль" id="confirmPassword" required>
-                    <div id="checkPasswordMatch"></div>
-                    <p class="agree">
-                        <input type="checkbox" name="agree" required>
-                        Согласие на обработку персональных данных
-                    </p>
-                    <input type="submit" name="registration" id="submit" value="ЗАРЕГИСТРИРОВАТЬСЯ">
-                </form>
+        <form action="php\registration.php" method="POST" class="flex" id="formReg"> 
+
+            <p class="error" id="fioError"></p>
+            <input type="text" name="fio" placeholder="Введите ФИО" id="fio" required>
+
+            <p class="error" id="loginError"></p>
+            <input type="text" name="login"  placeholder="Введите логин" id="login" required>
+            <input type="email" name="email" placeholder="Введите Email" required>
+            <input type="password" name="password" placeholder="Введите пароль" id="password" required>
+                    
+            <p class="error" id="passwordError"></p>
+            <input type="password" name="passwordCheck" placeholder="Повторите пароль" id="confirmPassword" required>
+            <p class="agree">
+            <input type="checkbox" name="agree" required>
+                Согласие на обработку персональных данных
+            </p>
+            <input type="submit" name="registration" id="submitReg" value="ЗАРЕГИСТРИРОВАТЬСЯ">
+        </form>
 
     </main>
 <?php include 'include/footer.php';?>
+<script src="js\reg.js" defer></script>
 </body>
 </html>

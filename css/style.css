@@ -228,11 +228,12 @@ form input[type="submit"] {
 form input[type='submit']:hover {
     background-color: #2e1027b8;
 }
-#checkPasswordMatch{
-	color: #7a5984;
+
+
+p.error{
+    text-align: center;
+    color: #b108e4;
 }
-
-
 
 /*Страница стилей пользователя*/
 .menu{

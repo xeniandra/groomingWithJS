@@ -78,20 +78,5 @@ while ($app = mysqli_fetch_assoc($queryApplications)) {
 <?php include "include/footer.php";?>
     
     <script src="js\index.js"></script>
-    <!-- <script>
-        function fn_register(){
-            let password = document.querySelector("input[name=password]").value;
-            let passwordCheck = document.querySelector("input[name=passwordCheck]").value;
-            if(password != passwordCheck){
-                document.queryElementById("messagePass").innerHTML = "Пароли не совпадают"
-                alert("Пароли не совпадают")
-                return false;
-            }
-            else{
-                return true;
-            }
-
-        }
-    </script> -->
 </body>
 </html>
