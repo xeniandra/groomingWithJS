@@ -79,7 +79,7 @@ function checkLogin(e){
                 {transform: 'scale(1)'}
             ],{
                 duration: 1000
-            })   
+            }) 
         }
     })
 }

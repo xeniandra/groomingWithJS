@@ -17,16 +17,15 @@
 <?php include "include/header.php";?>
     <main class="main">
         <h2>Авторизация</h2>
-        <form action="php/authorization.php" method="POST" class="flex">
-<?php if($_GET['messageLog']){ ?>
-        <p class="message"><?=$_GET['message'];?></p>
-<?php }?>
-            <input type="text" name="login" placeholder="Введите логин" required>
-            <input type="password" name="password" placeholder="Введите пароль" required>
-            <input type="submit" value="ВОЙТИ">
+        <form action="php/authorization.php" method="POST" class="flex" id="formAuth">
+            <p class="error" id="logPassErr"><?=$_GET['message']?></p>
+            <input type="text" name="login" placeholder="Введите логин" required id="login">
+            <input type="password" name="password" placeholder="Введите пароль" required id="password">
+            <input type="submit" value="ВОЙТИ" id="subAuth">
         </form>
 
     </main>
 <?php include 'include/footer.php';?>
+<script src="js\auth.js" defer></script>
 </body>
 </html>

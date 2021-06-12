@@ -4,9 +4,6 @@
     $login = $_POST['login'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-
-
-
     $loginUser = mysqli_query($link, "SELECT `login` FROM `users` WHERE `login` = '$login'");
     $numLogins = mysqli_num_rows($loginUser);
     if($numLogins == 0){

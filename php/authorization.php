@@ -24,7 +24,6 @@
         }
     }
     else{
-        header('Location: ../index.php?message=Пользователя с такими данными не существует#auth');
-        // echo "Такого пользователя не существует";
+        header('Location: ../authorizationPage.php?message=Пользователя с такими данными не существует');
     }
 ?>
