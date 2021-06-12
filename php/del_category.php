@@ -2,7 +2,7 @@
     // старт сессии
     session_start();
     // соединение с базой данных
-    require ("../include/connection.php");
+    require ("connection.php");
     // проверка сессии
     require ("check_session.php");
     // проверка на роль администратора

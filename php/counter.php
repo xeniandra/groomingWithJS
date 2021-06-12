@@ -2,7 +2,7 @@
     // старт сессии
     session_start();
     // соединение с базой данных
-    require ("../include/connection.php");
+    require ("connection.php");
     $result = $link->query('SELECT COUNT(`id_application`) as "counter" FROM `applications` WHERE `status` = "Услуга оказана"');
     $counter = $result->fetch_assoc();
     if(!empty($counter)){

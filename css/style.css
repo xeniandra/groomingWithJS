@@ -27,18 +27,6 @@ a{
 	text-decoration: none;
 }
 
-p.message {
-    margin: 10px 0px;
-    color: #6c1b86;
-    font-size: 20px;
-}
-
-.flex{  /*fix*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
 /*Стили хедера*/
 .header{
     background-color: #fcf4ff;
@@ -76,6 +64,15 @@ img.logo{
 /*конец стилей хедера*/
 
 /*Стили основного раздела*/
+.main{
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+}
 .contRegWrap{
 	display: flex;
 	justify-content: space-between;
@@ -127,26 +124,37 @@ div.counter{
     background-color: #fcf4ff61;
 }
 
-/* main */
-.heading {
-    flex-direction: column;
-    margin: 20px auto;
-    width: 100%;
-    border-bottom: 2px solid black;
+.main h2{
+    color: #2e1027;
+    font-size: 24pt;
+    margin-top: 30px;
+    text-align: center;
 }
-.container-main{
-    flex-direction: column;
-    margin-top: 10px;
-    max-width: 1100px;
-    margin: 0 auto;
+.container-request{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+	margin: 20px;
+	flex-grow: 1;
 }
+
 .request {
-    margin: 10px;
     padding: 15px;
     text-align: center;
     background-color: white;
     border: 1px solid #594c5d1c;
+    height: 400px;
+    width: 500px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
 }
+
 div.container-request p{
     margin-bottom: 5px;
     font-size: 20px;
@@ -156,51 +164,328 @@ div.container-request img{
     height: 300px;
     object-fit: cover;
 }
-.container-form, .container-request {
-    max-width: 1100px;
+
+/*конец стилей основного раздела*/
+
+/*Стили форм*/
+.container-form {
+    max-width: 1200px;
     margin: 0 auto;
 }
-form.flex {
+form {
+    display: flex;
     flex-direction: column;
+	align-items: center;
+	width: 400px;
+	padding: 10px;
 }
-form.flex input, form.flex select{
+form input{
+    display: flex;
+    text-align: center;
+    border: 1px solid #594c5d1c;
+    margin: 10px;
+    color: #2e1027;
+    padding: 5px;
+    height: 40px;
+    width: 95%;
+    font-size: 18pt;
+    justify-content: center;
+}
+
+form select{
+    height: 40px;
+    width: 95%;
+    font-size: 18pt;
+    text-align: center;
+    border: 1px solid #594c5d1c;
+    color: #2e1027;
     margin-bottom: 10px;
-    padding: 10px 40px;
-    font-size: 16px;
 }
+
 p.agree {
     margin: 10px;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-size: 17pt;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
 }
-input[type="submit"] {
+
+input[type="checkbox"] {
+    height: 20px;
+}
+
+form input[type="submit"] {
     background-color: #7a5984;
     border: none;
     color: white;
     margin-top: 10px;
 }
-footer {
-    padding: 40px 0;
-    margin-top: 40px;
-    border-top: 2px solid black;
-    text-align: center;
+
+form input[type='submit']:hover {
+    background-color: #2e1027b8;
 }
-/* личный кабинет */
-textarea {
-    margin-bottom: 10px;
-    padding: 10px 40px;
-    font-size: 16px;
+#checkPasswordMatch{
+	color: #7a5984;
+}
+
+
+
+/*Страница стилей пользователя*/
+.menu{
+    display: flex;
+    width: 100%;
+    padding: 11px 0px;
+    justify-content: center;
+    align-items: center;
+    background-color: #594c5d;
+}
+a.menu {
+    padding: 8px 15px;
+    color: rgb(255, 255, 255);
+    font-size: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    margin: 0px 18px;
+    border: 2px solid white;
+}
+a.menu:hover{
+    color: #fcf4ff;
+    border: 2px solid #fcf4ff;
+    background-color: #fcf4ff61;
+}
+nav.filtration {
+    display: flex;
+    width: 100%;
+    align-content: center;
+    justify-content: space-evenly;
+    margin: 20px 0px 0px 0px;
+    font-size: 16pt;
+    flex-wrap: wrap;
+}
+a.status {
+    display: flex;
+    flex-grow: 1;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #fcf4ff;
+    background-color: white;
+    margin: 5px;
+    padding: 5px;
+}
+a.status:hover {
+    background-color: #9f87c0;
+    color: white;
+}
+.containerMyRequest {
+    display: flex;
+    width: 100%;
+    align-content: flex-start;
+    justify-content: center;
+    margin: 20px 0px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.MyRequest{
+    display: flex;
+    margin: 10px;
+    padding: 15px;
+    width: 300px;
+    font-size: 16pt;
+    text-align: center;
+    background-color: white;
+    border: 1px solid #594c5d1c;
+    flex-direction: column;
+    align-content: stretch;
+}
+.MyRequest p{
+    margin:4px;
 }
 a.deleteApp {
     font-size: 20px;
     color: #bf2aec;
 }
-/* администратор */
-.container-category {
-    max-width: 1100px;
-    margin: 0 auto;
+a.deleteApp:hover{
+    color: #bf2aec47;
 }
+/* стили формы */
+textarea {
+    margin-bottom: 10px;
+    padding: 10px 40px;
+    font-size: 16px;
+    width: 95%;
+    font-size: 18pt;
+    justify-content: center;
+    border: 1px solid #594c5d1c;
+    text-align: center;
+}
+form p{
+    font-size: 16pt;
+}
+
+input[type="file"] {
+    border: none;
+    font-size: 16pt;
+}
+/* конец стилей формы */
+
+/* стили страницы администратора */
+.containerCategory {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 16pt;
+    margin: 20px 0px;
+}
+div.category{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #594c5d1c;
+    padding: 15px;
+}
+div.category a.del{
+    margin-top: 5px;
+    color: #bf2aec;
+}
+div.category a:hover{
+    color: #bf2aec69;
+}
+.containerUsersRequests{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 16pt;
+    margin: 20px 0px;
+}
+.requestUsers{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #594c5d1c;
+    text-align: center;
+}
+.requestUsers p {
+    margin: 3px;
+}
+p.change {
+    color: black;
+    background-color: #7a59840f;
+    padding: 5px;
+    margin: 15px;
+}
+/* конец стилей страницы администратора */
+
+/*Стили футера*/
+footer {
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+    width: 100%;
+    padding: 40px 0;
+    margin-top: 40px;
+    border-top: 2px solid black;
+    text-align: center;
+}
+/*конец стилей футера*/
+/* подключение шрифта */
+@font-face{
+    font-family: 'RussianRoad';
+    src: url('../fonts/RussianRoad.otf');
+}
+
 @media screen and (max-width: 375px){
-    .flex{
+    /* .flex{
         flex-direction: column ;
         align-items: center;
+    } */
+
+/*Стили хедера*/
+    .header{
+        max-width: 375px;
+        text-align: center;
     }
+    .container-header{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+/*Стили основного раздела*/
+    a.menu{
+        margin-bottom: 10px;
+    }
+
+    .main {
+        width: 100%;
+        max-width: 375px;
+    }
+    .main h2{
+        font-size: 18pt;
+    }
+    .menu{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+    }
+    .contRegWrap{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    div.counter, .regAuth{
+        width: 100%;
+        font-size: 18pt;
+    }
+
+/*Стили форм*/
+    form{
+        max-width: 330px;
+    }
+/*Страница стилей пользователя*/
+
+nav.filtration{
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+}
+a.status{
+    margin: 10px; 
+}
+/* стили страницы администратора */
+.containerCategory {
+    max-width: 330px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+div.category{
+    margin-bottom: 10px;
+}
+/*Стили футера*/
+    .footer{
+        max-width: 375px;
+    }
+
 }

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require ("include\connection.php");
+    require ("php\connection.php");
     require ("php\check_session.php");
     $queryCategories = mysqli_query($link, "SELECT `id_category`, `category` FROM `category`");
     $idUser = $_SESSION['id_user'];
@@ -13,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css\style.css">
+    <link rel="shortcut icon" href="logo\logo_groom.png" type="image/x-icon">		
     <title>Личный кабинет</title>
 </head>
 <body>
@@ -22,19 +23,14 @@
             <a href="index.php" class="menu">Главная</a>
             <a href="php\logout.php" class="menu">Выход</a>
         </div>
-
-        <div class="container-main flex">
-            <div class="heading flex" id="app">
-                <h3 class="title">Мои заявки</h2>
-            </div>
-            <p class="message"><?=$_GET['messageDel'];?></p>
+        <h2>Мои заявки</h2>
             <nav class="filtration">
-                    <a onclick="fn_app_filtration ()" class="status">Все</a> |
-                    <a onclick="fn_app_filtration ('Новая')" class="status">Новые</a> |
-                    <a onclick="fn_app_filtration ('Обработка данных')" class="status">Обработка данных</a> |
+                    <a onclick="fn_app_filtration ()" class="status">Все</a>
+                    <a onclick="fn_app_filtration ('Новая')" class="status">Новые</a>
+                    <a onclick="fn_app_filtration ('Обработка данных')" class="status">Обработка данных</a>
                     <a onclick="fn_app_filtration ('Услуга оказана')" class="status">Услуга оказана</a>
-                </nav>
-            <div class="container-request flex">
+            </nav>
+            <div class="containerMyRequest flex">
 <?php
 while($app = mysqli_fetch_assoc($queryApplicationsUser)){
     $id_application = $app['id_application'];
@@ -47,32 +43,25 @@ while($app = mysqli_fetch_assoc($queryApplicationsUser)){
     $category = mysqli_fetch_assoc($categories);
     $categoryName = $category['category'];
 ?>
-                <div class="request">
-                    <p class="date">Время: <?=$date?></p>
-                    <p class="name-dog">Кличка: <?=$name_dog?></p>
-                    <p class="description">Описание: <?=$description?></p>
-                    <p class="category">Категория: <?=$categoryName?></p>
+                <div class="MyRequest">
+                    <p>Время: <?=$date?></p>
+                    <p>Кличка: <?=$name_dog?></p>
+                    <p>Описание: <?=$description?></p>
+                    <p>Категория: <?=$categoryName?></p>
                     <p class="status" id="status">Статус заявки: <b><?=$status?></b></p>
-<?php
-    if($status == 'Новая'){
-?>
+<?php if($status == 'Новая'){?>
                     <a href="php\del_application.php?idApp=<?=$id_application?>" class="deleteApp">Удалить заявку</a>
 <?php } ?>
                 </div>
-<?
-}
-?>
+<?}?>
             </div>
-        </div>
-        <div class="container-form flex">
-            <div class="heading flex">
-                    <h3 class="title" id="auth">Создать заявку</h2>
-            </div>
-            <div class="container-form flex">
+
+            <h2>Создать заявку</h2>
+
                 <form enctype="multipart/form-data" action="php\add_application.php" method="POST" class="flex" id="add"> 
                     <p class="message"><?=$_GET['message'];?></p>
                     <input type="text" name="name" placeholder="Кличка питомца" required>
-                    <textarea name="description" placeholder="Описание работы" required rows="5"></textarea>
+                    <textarea name="description" placeholder="Описание работы" required rows="3"></textarea>
                     <select name="category" id="">
 <?php while($category = mysqli_fetch_assoc($queryCategories)){
     $idCategory = $category['id_category'];
@@ -85,8 +74,8 @@ while($app = mysqli_fetch_assoc($queryApplicationsUser)){
                     <input type="file" name="image" id="" required>
                     <input type="submit" value="ОТПРАВИТЬ ЗАЯВКУ">
                 </form>
-            </div>
     </main>
+<?php include 'include/footer.php';?>
     <script src="js\user.js"></script>
 </body>
 </html>

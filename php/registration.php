@@ -1,5 +1,5 @@
 <?php
-    require ("../include/connection.php");
+    require ("connection.php");
     $fio = $_POST['fio'];
     $login = $_POST['login'];
     $email = $_POST['email'];

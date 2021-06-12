@@ -1,5 +1,5 @@
 function fn_app_filtration(status) {
-    let app = document.querySelectorAll(".request");
+    let app = document.querySelectorAll(".MyRequest");
     if(app.length == 0) return;
     if(status == undefined){
         for(let i = 0; i < app.length; i++ ){
@@ -7,8 +7,8 @@ function fn_app_filtration(status) {
         }
         return;
     }
-    		// получение текста статуса у всех заявок
-		let stat = document.querySelectorAll(".request #status b");
+    	// получение текста статуса у всех заявок
+		let stat = document.querySelectorAll(".MyRequest #status b");
 		// фильтрация по статусу
 		for(let i = 0; i < stat.length; i++) {
 			// проверка на статус

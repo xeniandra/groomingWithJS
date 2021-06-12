@@ -1,5 +1,5 @@
 <?php
-    require ("../include/connection.php");
+    require ("connection.php");
     $login = $_POST['login'];
     $password = $_POST['password'];
     $queryUser = mysqli_query($link, "SELECT `id_user`, `fio`, `login`, `email`, `password`, `role` FROM `users` WHERE `login` = '$login' 
