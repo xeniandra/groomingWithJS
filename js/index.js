@@ -4,7 +4,7 @@
 
 		setInterval( () =>
 		{
-			fetch('../backend/counter.php')
+			fetch('../php/counter.php')
 				.then(res => res.json())
 				.then(data => {
 					if (parseInt(data.counter) !== parseInt(counterElem.textContent))
@@ -19,6 +19,7 @@
 						counterElem.textContent = data.counter;
 
 						let audio = new Audio('../aud.mp3');
+						audio.autoplay = true;
 						audio.play();
 						setTimeout( () => {
 							audio.pause();

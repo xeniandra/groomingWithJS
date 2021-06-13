@@ -24,56 +24,51 @@
             <a href="php\logout.php" class="menu">Выход</a>
         </div>
         <h2>Мои заявки</h2>
-            <nav class="filtration">
-                    <a onclick="fn_app_filtration ()" class="status">Все</a>
-                    <a onclick="fn_app_filtration ('Новая')" class="status">Новые</a>
-                    <a onclick="fn_app_filtration ('Обработка данных')" class="status">Обработка данных</a>
-                    <a onclick="fn_app_filtration ('Услуга оказана')" class="status">Услуга оказана</a>
-            </nav>
-            <div class="containerMyRequest flex">
+        <nav class="filtration">
+            <a onclick="fn_app_filtration ()" class="status">Все</a>
+            <a onclick="fn_app_filtration ('Новая')" class="status">Новые</a>
+            <a onclick="fn_app_filtration ('Обработка данных')" class="status">Обработка данных</a>
+            <a onclick="fn_app_filtration ('Услуга оказана')" class="status">Услуга оказана</a>
+        </nav>
+        <div class="containerMyRequest flex">
 <?php
 while($app = mysqli_fetch_assoc($queryApplicationsUser)){
-    $id_application = $app['id_application'];
-    $date = $app['time'];
-    $name_dog = $app['name_dog'];
-    $description = $app['description'];
-    $status = $app['status'];
     $id_category = $app['id_category'];
-    $categories = mysqli_query($link, "SELECT `category` FROM `category` WHERE `id_category` = 1");
+    $categories = mysqli_query($link, "SELECT `category` FROM `category` WHERE `id_category` = '$id_category'");
     $category = mysqli_fetch_assoc($categories);
     $categoryName = $category['category'];
 ?>
-                <div class="MyRequest">
-                    <p>Время: <?=$date?></p>
-                    <p>Кличка: <?=$name_dog?></p>
-                    <p>Описание: <?=$description?></p>
-                    <p>Категория: <?=$categoryName?></p>
-                    <p class="status" id="status">Статус заявки: <b><?=$status?></b></p>
-<?php if($status == 'Новая'){?>
-                    <a href="php\del_application.php?idApp=<?=$id_application?>" class="deleteApp">Удалить заявку</a>
+            <div class="MyRequest">
+                <p>Время: <?=$app['time']?></p>
+                <p>Кличка: <?=$app['name_dog']?></p>
+                <p>Описание: <?=$app['description']?></p>
+                <p>Категория: <?=$categoryName?></p>
+                <p class="status" id="status">Статус заявки: <b><?=$app['status']?></b></p>
+<?php if($app['status'] == 'Новая'){?>
+                <a href="php\del_application.php?idApp=<?=$app['id_application']?>" class="deleteApp">Удалить заявку</a>
 <?php } ?>
-                </div>
-<?}?>
             </div>
+<?}?>
+        </div>
 
-            <h2>Создать заявку</h2>
+        <h2>Создать заявку</h2>
 
-                <form enctype="multipart/form-data" action="php\add_application.php" method="POST" class="flex" id="add"> 
-                    <p class="message"><?=$_GET['message'];?></p>
-                    <input type="text" name="name" placeholder="Кличка питомца" required>
-                    <textarea name="description" placeholder="Описание работы" required rows="3"></textarea>
-                    <select name="category" id="">
+            <form enctype="multipart/form-data" action="php\add_application.php" method="POST" class="flex" id="add"> 
+                <p class="error"><?=$_GET['message'];?></p>
+                <input type="text" name="name" placeholder="Кличка питомца" required>
+                <textarea name="description" placeholder="Описание работы" required rows="3"></textarea>
+                <select name="category" id="">
 <?php while($category = mysqli_fetch_assoc($queryCategories)){
     $idCategory = $category['id_category'];
     $nameCategory = $category['category'];
 ?>
-                        <option value="<?=$idCategory?>"><?=$nameCategory?></option>
+                    <option value="<?=$idCategory?>"><?=$nameCategory?></option>
 <? } ?>
-                    </select>
-                    <p>Загрузите фото питомца:</p>
-                    <input type="file" name="image" id="" required>
-                    <input type="submit" value="ОТПРАВИТЬ ЗАЯВКУ">
-                </form>
+                </select>
+                <p>Загрузите фото питомца:</p>
+                <input type="file" name="image" id="" required>
+                <input type="submit" value="ОТПРАВИТЬ ЗАЯВКУ">
+            </form>
     </main>
 <?php include 'include/footer.php';?>
     <script src="js\user.js"></script>

@@ -1,7 +1,8 @@
 <?php
     session_start();
     require ("php\connection.php");
-    $queryApplications = mysqli_query($link, "SELECT `id_application`, `id_user`, `name_dog`, `id_category`, `photo_before`, `photo_after`, `status`, `time` FROM `applications` WHERE `status` = 'Услуга оказана' ORDER BY `time` DESC LIMIT 4");
+    $queryApplications = mysqli_query($link, "SELECT `id_application`, `id_user`, `name_dog`, `id_category`, `photo_before`, `photo_after`, `status`, `time` 
+    FROM `applications` WHERE `status` = 'Услуга оказана' ORDER BY `time` DESC LIMIT 4");
     $queryApplicationsNumber = mysqli_query($link, "SELECT * FROM `applications` WHERE `status` = 'Услуга оказана'");
     $applicationsNumber = mysqli_num_rows($queryApplicationsNumber);
 ?>
@@ -28,55 +29,55 @@
 			<div class="regAuth">
 
 <?php if(($_SESSION['login'] == true) && ($_SESSION['role'] == 2)){ ?>
-                <a href="userPage.php">Личный кабинет</a>
-                <a href="php\logout.php">Выход</a>
+            <a href="userPage.php">Личный кабинет</a>
+            <a href="php\logout.php">Выход</a>
 <?php }
  elseif($_SESSION['login'] == true && $_SESSION['role'] == 1){ ?>
 
-                <a href="groom\index.php">Кабинет администратора</a>
-                <a href="..\php\logout.php">Выход</a>
+            <a href="groom\index.php">Кабинет администратора</a>
+            <a href="..\php\logout.php">Выход</a>
 <? } 
 else{?>
-                <a href="authorizationPage.php">Авторизация</a>
-                <a href="registrationPage.php">Регистрация</a>
+            <a href="authorizationPage.php">Авторизация</a>
+            <a href="registrationPage.php">Регистрация</a>
 <? } ?>
 			</div>
 
 		</div>
 <!-- zayavki -->
         <h2>Последние решенные заявки</h2>
-
         <div class="container-request flex">
 <?php
 while ($app = mysqli_fetch_assoc($queryApplications)) {
-    $idApp = $app['id_application'];
-    $nameDog = $app['name_dog'];
-    $photoBefore = $app['photo_before'];
-    $photoAfter = $app['photo_after'];
-    $time = $app['time'];
     $idCategory = $app['id_category'];
     $queryCategory = mysqli_query($link, "SELECT `category` FROM `category` WHERE `id_category` = '$idCategory'");
     $category = mysqli_fetch_assoc($queryCategory);
-    $nameCategory = $category['category'];
 ?>
             <div class="request">
-                <p class="date">Дата и время: <?=$time?></p>
-                <p class="name-dog">Питомец: <?=$nameDog?></p>
-                <p class="category">Категория: <?=$nameCategory?></p>
-                <div class="change-image" onmouseenter="fn_image_enter(event)" onmouseleave="fn_image_leave(event)" id="image_<?=$idApp?>">
+                <p class="date">Дата и время: <?=$app['time']?></p>
+                <p class="name-dog">Питомец: <?=$app['name_dog']?></p>
+                <p class="category">Категория: <?=$category['category']?></p>
+
+                <div class="change-image" onmouseenter="fn_image_enter(event)" onmouseleave="fn_image_leave(event)" 
+                id="image_<?=$app['id_application']?>">
+
                     <div class="before" style="display:block;">
-                        <img src="..\<?=$photoBefore?>" alt="before">
+                        <img src="..\<?=$app['photo_before']?>" alt="before">
                     </div>
+
                     <div class="after" style="display:none;">
-                        <img src="..\<?=$photoAfter?>" alt="after">
+                        <img src="..\<?=$app['photo_after']?>" alt="after">
                     </div>
+
                 </div>
             </div>
 <?php } ?>
         </div>
     </main>
+<audio autoplay="autoplay">
+</audio>
 <?php include "include/footer.php";?>
     
-    <script src="js\index.js"></script>
+<script src="js\index.js"></script>
 </body>
 </html>
