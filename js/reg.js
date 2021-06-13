@@ -10,6 +10,7 @@ function checkRegister(event) {
     let login_reg = /^[A-Za-z -]+$/;
 
     if(!fio_reg.test(fio)) {
+        errorFlag = true;
         document.getElementById("fioError").textContent = "ФИО должен содержать только кириллические буквы, дефис и пробелы";
         document.getElementById("fioError").animate([
             {transform: 'scale(1)'},
@@ -18,7 +19,6 @@ function checkRegister(event) {
         ],{
             duration: 1000
         })
-        errorFlag = true;
     }
     if(!login_reg.test(login)) {
         errorFlag = true;
