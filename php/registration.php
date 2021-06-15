@@ -8,10 +8,10 @@
     $numLogins = mysqli_num_rows($loginUser);
     if($numLogins == 0){
         $addUser = mysqli_query($link, "INSERT INTO `users` (`id_user`, `fio`, `login`, `email`, `password`, `role`) VALUES (NULL, '$fio', '$login', '$email', '$password', '2');");
-            header('Location: ../index.php?messageLog=Вы успешно зарегистрированы#auth');
+            header('Location: ../index.php?messageLog=Вы успешно зарегистрированы');
         }
         else{
-            header('Location: ../index.php?messageLog=Пользователь с таким логином уже есть#register');
+            header('Location: ../index.php?messageLog=Пользователь с таким логином уже есть');
         }
 
 ?>

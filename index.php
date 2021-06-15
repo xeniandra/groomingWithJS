@@ -74,8 +74,6 @@ while ($app = mysqli_fetch_assoc($queryApplications)) {
 <?php } ?>
         </div>
     </main>
-<audio autoplay="autoplay">
-</audio>
 <?php include "include/footer.php";?>
     
 <script src="js\index.js"></script>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css\style.css">
     <link rel="shortcut icon" href="logo\logo_groom.png" type="image/x-icon">
     <link rel="shortcut icon" href="logo\logo_groom.png" type="image/x-icon">				
-    <title>Главная страница</title>
+    <title>Авторизация</title>
 </head>
 <body>
 <?php include "include/header.php";?>

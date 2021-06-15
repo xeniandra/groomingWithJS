@@ -19,7 +19,6 @@
 						counterElem.textContent = data.counter;
 
 						let audio = new Audio('../aud.mp3');
-						audio.autoplay = true;
 						audio.play();
 						setTimeout( () => {
 							audio.pause();
